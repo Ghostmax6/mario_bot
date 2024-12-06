@@ -1,0 +1,18 @@
+{
+  "name": "telegramgame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.16.2",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
