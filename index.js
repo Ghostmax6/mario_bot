@@ -59,7 +59,8 @@ bot.on("callback_query", function (query) {
     );
   } else {
     queries[query.id] = query;
-    const gameurl = 'https://mario-bot-test.onrender.com';
+    const gameurl = 'https://mario-bot-test.onrender.com?chat_id=' + query.from.id;
+    console.log("game sent to : " + gameurl);
     bot.answerCallbackQuery(query.id, { url: gameurl });
   }
 });
