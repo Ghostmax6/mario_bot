@@ -49,7 +49,7 @@ bot.onText(/\/start|\/game/, (msg) => {
     // }
 });
 bot.on("callback_query", function (query) {
-  console.log(query);
+  //console.log(query);
   if (query.game_short_name !== gameName) {
     bot.answerCallbackQuery(
       query.id,
@@ -81,6 +81,8 @@ server.get('/', (req, res) => {
 });
 
 server.get("/highscore/:score", function (req, res, next) {
+  console.log("We are getting high score::");
+  console.log(req.query);
   if (!Object.hasOwnProperty.call(queries, req.query.id)) return next();
 
   const token = SCORE_TOKEN[addAllNumbers(BigInt(req.query.id)) - 1];
