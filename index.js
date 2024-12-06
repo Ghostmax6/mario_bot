@@ -51,7 +51,7 @@ bot.onText(/\/start|\/game/, (msg) => {
     // }
 });
 bot.on("callback_query", function (query) {
-  console.log(query);
+  //console.log(query);
   if (query.game_short_name !== gameName) {
     bot.answerCallbackQuery(
       query.id,
@@ -94,9 +94,13 @@ server.post('/scores', async (req, res) => {
   }
 
   // Send score to Telegram
-  const message = `You Scored ${score} points.`;
+  let message = `You Scored ${score} points.`;
+  if(score > 10) {
+    message += "/n Congratulations! You won X Casino bonus code! : '12345678'";
+    message += "/n You can use this code here : Hitme.bet";
+  }
   const telegramUrl = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
-  console.log(telegramUrl);
+  //console.log(telegramUrl);
 
   try {
       await axios.post(telegramUrl, {
