@@ -84,11 +84,11 @@ server.get('/', (req, res) => {
 
 server.post('/scores', async (req, res) => {
   console.log("gettting scores");
-  console.log(req.query);
+  console.log(req.body);
   // req.query.id
   const { playerId, score } = req.body;
 
-  if (!playerName || !score) {
+  if (!playerId || !score) {
       return res.status(400).send('Missing playerName or score');
   }
 
