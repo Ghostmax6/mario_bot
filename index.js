@@ -96,8 +96,8 @@ server.post('/scores', async (req, res) => {
   // Send score to Telegram
   let message = `You Scored ${score} points.`;
   if(score > 10) {
-    message += "/n Congratulations! You won X Casino bonus code! : '12345678'";
-    message += "/n You can use this code here : Hitme.bet";
+    message += " Congratulations! You won X Casino bonus code : '12345678'. ";
+    message += " You can use this code here : Hitme.bet";
   }
   const telegramUrl = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
   //console.log(telegramUrl);
