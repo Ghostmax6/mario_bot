@@ -51,7 +51,7 @@ bot.onText(/\/start|\/game/, (msg) => {
     // }
 });
 bot.on("callback_query", function (query) {
-  //console.log(query);
+  console.log(query);
   if (query.game_short_name !== gameName) {
     bot.answerCallbackQuery(
       query.id,
