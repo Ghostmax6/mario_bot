@@ -82,7 +82,7 @@ server.get('/', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
 
-app.post('/scores', async (req, res) => {
+server.post('/scores', async (req, res) => {
   console.log("gettting scores");
   console.log(req.query);
   // req.query.id
