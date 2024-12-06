@@ -93,7 +93,7 @@ server.post('/scores', async (req, res) => {
   }
 
   // Send score to Telegram
-  const message = `Player: ${playerName}\nScore: ${score}`;
+  const message = `You Scored ${score} points.`;
   const telegramUrl = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
   console.log(telegramUrl);
 
