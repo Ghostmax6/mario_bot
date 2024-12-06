@@ -5,7 +5,7 @@ const path = require("path");
 const TelegramBot = require("node-telegram-bot-api");
 
 const gameName = "mario_endless";
-const webURL = "www.YOUR_URL.com";
+const webURL = "https://mario-bot-test.onrender.com";
 
 const server = express();
 server.use(compression());
@@ -57,7 +57,7 @@ bot.on("callback_query", function (query) {
     );
   } else {
     queries[query.id] = query;
-    const gameurl = `https://${webURL}/index.html?id=${query.id}`;
+    const gameurl = 'https://mario-bot-test.onrender.com';
     bot.answerCallbackQuery(query.id, { url: gameurl });
   }
 });
