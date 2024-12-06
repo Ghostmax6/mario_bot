@@ -3,12 +3,15 @@ const express = require("express");
 const compression = require('compression');
 const path = require("path");
 const TelegramBot = require("node-telegram-bot-api");
+//const bodyParser = require('body-parser');
+//const axios = require('axios');
 
 const gameName = "mario_endless";
 const webURL = "https://mario-bot-test.onrender.com";
 
 const server = express();
 server.use(compression());
+//server.use(bodyParser.urlencoded({ extended: true }));
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const port = process.env.PORT || 5000;
@@ -79,6 +82,33 @@ server.use(express.static(path.join(__dirname, "public"), {
 server.get('/', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
+
+// app.post('/scores', async (req, res) => {
+//   console.log("gettting scores")
+//   const { playerName, score } = req.body;
+
+//   if (!playerName || !score) {
+//       return res.status(400).send('Missing playerName or score');
+//   }
+
+//   // Send score to Telegram
+//   const message = `Player: ${playerName}\nScore: ${score}`;
+//   const telegramUrl = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
+//   console.log(telegramUrl);
+
+//   try {
+//       await axios.post(telegramUrl, {
+//           chat_id: TELEGRAM_CHAT_ID,
+//           text: message,
+//       });
+
+//       console.log('Score sent to Telegram!');
+//       res.status(200).send('Score received and sent to Telegram!');
+//   } catch (error) {
+//       console.error('Failed to send score to Telegram:', error.message);
+//       res.status(500).send('Failed to send score to Telegram');
+//   }
+// });
 
 server.get("/highscore/:score", function (req, res, next) {
   console.log("We are getting high score::");
