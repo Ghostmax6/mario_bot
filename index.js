@@ -39,16 +39,10 @@ bot.onText(/\/help/, (msg) =>
     "This bot implements a simple game. Say /game if you want to play."
   )
 );
-// bot.onText(/\/start|\/game/, (msg) => bot.sendGame(msg.from.id, gameName));
 bot.onText(/\/start|\/game/, (msg) => {
   bot.sendGame(msg.from.id, gameName) // Replace 'spacerunner' with your game's short name
           .then(() => console.log('Game sent!'))
           .catch((err) => console.error('Error sending game:', err));
-    // if (msg.text === '/start') {
-    //   bot.sendGame(chatId, gameName) // Replace 'spacerunner' with your game's short name
-    //       .then(() => console.log('Game sent!'))
-    //       .catch((err) => console.error('Error sending game:', err));
-    // }
 });
 bot.on("callback_query", function (query) {
   //console.log(query);
@@ -85,7 +79,6 @@ server.get('/', (req, res) => {
 
 server.post('/scores', async (req, res) => {
   console.log("gettting scores");
-  console.log(req.body);
   // req.query.id
   const { playerId, score } = req.body;
 
@@ -94,11 +87,46 @@ server.post('/scores', async (req, res) => {
   }
 
   // Send score to Telegram
-  let message = `You Scored ${score} points.`;
-  if(score > 10) {
-    message += " Congratulations! You won X Casino bonus code : '12345678'. ";
-    message += " You can use this code here : Hitme.bet";
+  let message = `You Scored ${score} points.\n`;
+
+
+  if(score >= 10) {
+    massage += "Congrats! You Have Won a Special \n";
+    var persent = 50;
+    var pincode = " KSO12A ";
+    var addMsg = "You Got Additional Prize too.";
+    if(score >= 25 && score < 30) {
+      persent = 100; pincode = " GSDK4G ";
+    }else if(score >= 30 && score < 35) {
+      persent = 150; pincode = " AGSN67 ";
+    }else if(score >= 35 && score < 40) {
+      persent = 200; pincode = " LABCK2 ";
+    }else if(score >= 40 && score < 50) {
+      persent = 250; pincode = " UQAKD6 ";
+    }else if(score >= 50) {
+      persent = 300; pincode = " UOAMD7 ";
+    }
+
+    message += `${persent}% Bonus \n`;
+    message += `Signup Now and Claim Your Bonus at <a href="https://hitme.bet/?faff=408">Hitme.bet</a> \n`;
+    message += `Use Bonus Code ${pincode} to Receive Your Reward! \n`;
+    
+    if(score > 11 && score < 15) {
+      message += addMsg;
+      message += "20 Free Spins Reward : YDSLKU";
+    }else if(score >= 31 && score < 35){
+      message += addMsg;
+      message += "30 Free Spins Reward : QZNSK4";
+    }else if(score >= 41 && score < 50){
+      message += addMsg;
+      message += "40 Free Spins Reward : 63DKLU";
+    }
+
   }
+
+
+ 
+  
   const telegramUrl = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
   //console.log(telegramUrl);
 
@@ -116,57 +144,5 @@ server.post('/scores', async (req, res) => {
   }
 });
 
-// server.get("/highscore/:score", function (req, res, next) {
-//   console.log("We are getting high score::");
-//   console.log(req.query);
-//   if (!Object.hasOwnProperty.call(queries, req.query.id)) return next();
-
-//   const token = SCORE_TOKEN[addAllNumbers(BigInt(req.query.id)) - 1];
-
-//   let query = queries[req.query.id];
-
-//   let options;
-//   if (query.message) {
-//     options = {
-//       chat_id: query.message.chat.id,
-//       message_id: query.message.message_id,
-//     };
-//   } else {
-//     options = {
-//       inline_message_id: query.inline_message_id,
-//     };
-//   }
-
-//   // ===== Obfuscation decoding starts =====
-//   // Change this part if you want to use your own obfuscation method
-//   const obfuscatedScore = BigInt(req.params.score);
-
-//   const realScore = Math.round(Number(obfuscatedScore / token));
-
-//   // If the score is valid
-//   if (BigInt(realScore) * token == obfuscatedScore) {
-//     // ===== Obfuscation decoding ends =====
-//     bot
-//       .setGameScore(query.from.id, realScore, options)
-//       .then((b) => {
-//         return res.status(200).send("Score added successfully");
-//       })
-//       .catch((err) => {
-//         if (
-//           err.response.body.description ===
-//           "Bad Request: BOT_SCORE_NOT_MODIFIED"
-//         ) {
-//           return res
-//             .status(204)
-//             .send("New score is inferior to user's previous one");
-//         } else {
-//           return res.status(500);
-//         }
-//       });
-//     return;
-//   } else {
-//     return res.status(400).send("Are you cheating ?");
-//   }
-// });
 
 server.listen(port);
