@@ -108,7 +108,7 @@ server.post('/scores', async (req, res) => {
     }
 
     message += `${persent}% Bonus \n`;
-    message += `Signup Now and Claim Your Bonus at <a href="https://hitme.bet/?faff=408">Hitme.bet</a> \n`;
+    message += `Signup Now and Claim Your Bonus at <a href="https://hitme.bet/?faff=408">Hitme Site</a> \n`;
     message += `Use Bonus Code ${pincode} to Receive Your Reward! \n`;
     
     if(score > 11 && score < 15) {
@@ -134,6 +134,7 @@ server.post('/scores', async (req, res) => {
       await axios.post(telegramUrl, {
           chat_id: playerId,
           text: message,
+          parse_mode: 'HTML',
       });
 
       console.log('Score sent to Telegram!');
