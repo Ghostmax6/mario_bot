@@ -91,7 +91,7 @@ server.post('/scores', async (req, res) => {
 
 
   if(score >= 10) {
-    massage += "Congrats! You Have Won a Special \n";
+    message += "Congrats! You Have Won a Special \n";
     var persent = 50;
     var pincode = " KSO12A ";
     var addMsg = "You Got Additional Prize too.";
