@@ -94,7 +94,7 @@ server.post('/scores', async (req, res) => {
     message += "Congrats! You Have Won a Special \n";
     var persent = 50;
     var pincode = " KSO12A ";
-    var addMsg = "You Got Additional Prize too.";
+    var addMsg = "You Got Additional Prize too! \n";
     if(score >= 25 && score < 30) {
       persent = 100; pincode = " GSDK4G ";
     }else if(score >= 30 && score < 35) {
@@ -108,7 +108,7 @@ server.post('/scores', async (req, res) => {
     }
 
     message += `${persent}% Bonus \n`;
-    message += `Signup Now and Claim Your Bonus at <a href="https://hitme.bet/?faff=408">Hitme Site</a> \n`;
+    message += `Signup Now and Claim Your Bonus at <a href="https://hitme.bet/?faff=408">Hitme</a> \n`;
     message += `Use Bonus Code ${pincode} to Receive Your Reward! \n`;
     
     if(score > 11 && score < 15) {
