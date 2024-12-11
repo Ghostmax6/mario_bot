@@ -87,7 +87,7 @@ server.post('/scores', async (req, res) => {
   }
 
   // Send score to Telegram
-  let message = `You Scored ${score} points.\n`;
+  var message = `You Scored ${score} points.\n`;
 
 
   if(score >= 10) {
