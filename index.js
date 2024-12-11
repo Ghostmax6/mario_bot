@@ -16,22 +16,9 @@ const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const port = process.env.PORT || 5000;
 
-const SCORE_TOKEN = process.env.SCORE_TOKEN.split(";").map((t) => BigInt(t));
+//const SCORE_TOKEN = process.env.SCORE_TOKEN.split(";").map((t) => BigInt(t));
 
 const queries = {};
-
-function addAllNumbers(number) {
-  const strNumber = number.toString();
-
-  if (strNumber.length === 1) return number;
-
-  const numbers = strNumber.split("");
-  var sum = 0;
-  for (var i = 0; i < numbers.length; i++) {
-    sum += parseInt(numbers[i], 10);
-  }
-  return addAllNumbers(sum);
-}
 
 bot.onText(/\/help/, (msg) =>
   bot.sendMessage(
@@ -53,7 +40,7 @@ bot.on("callback_query", function (query) {
     );
   } else {
     queries[query.id] = query;
-    const gameurl = 'https://mario-bot-test.onrender.com?chat_id=' + query.from.id;
+    const gameurl =`${webURL}?chat_id=` + query.from.id;
     console.log("game sent to : " + gameurl);
     bot.answerCallbackQuery(query.id, { url: gameurl });
   }
