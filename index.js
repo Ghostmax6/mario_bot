@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 
 const gameName = "mario_endless";
-const webURL = "https://mario-bot-test.onrender.com";
+const webURL = "https://hitme.fun";
 
 const server = express();
 server.use(compression());
