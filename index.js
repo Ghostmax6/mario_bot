@@ -6,7 +6,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-const gameName = "mario_endless";
+const gameName = "Hit Me SuperM";
 const webURL = "https://hitme.fun";
 
 const server = express();
