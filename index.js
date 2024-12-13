@@ -6,7 +6,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-const gameName = "Hit Me SuperM";
+const gameName = "hitmesuperm";
 const webURL = "https://hitme.fun";
 
 const server = express();
