@@ -28,7 +28,7 @@ bot.onText(/\/help/, (msg) =>
 );
 bot.onText(/\/start|\/game/, (msg) => {
 
-  const welcomeMessage = `👋 Hello, ${userFirstName}!\n\nWelcome to our bot! \n 
+  const welcomeMessage = `👋 Hello, ${msg.from.first_name || "Player"}!\n\nWelcome to our bot! \n 
   We bring you classic Super Mario fun with exciting rewards! The \n 
   game offers you the chance to get rewards based on the number \n 
   of points you achieve. Minimum number of points required to \n
@@ -38,7 +38,7 @@ bot.onText(/\/start|\/game/, (msg) => {
   game ends if your total number of points qualifies for a prize. \n
   Let’s jump, collect coins and have fun! \n\n`;
 
-  bot.sendMessage(chatId, welcomeMessage);
+  bot.sendMessage(msg.from.id, welcomeMessage);
 
   bot.sendGame(msg.from.id, gameName) // Replace 'spacerunner' with your game's short name
           .then(() => console.log('Game sent!'))
